@@ -1,4 +1,7 @@
-define('main', ['audioCtx', 'getUserMedia'], function(audioCtx, getUserMedia) {
+define(
+    'main',
+    ['audioCtx', 'getUserMedia', 'visualization'],
+    function(audioCtx, getUserMedia, visualization) {
 
     if (!getUserMedia.hasGetUserMedia) {
         return;
@@ -6,6 +9,7 @@ define('main', ['audioCtx', 'getUserMedia'], function(audioCtx, getUserMedia) {
 
     getUserMedia.getAudioStream().then(function(stream) {
         audioCtx.connectGumStream(stream);
+        visualization.visualize(audioCtx.getData);
     });
 
 });

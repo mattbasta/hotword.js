@@ -27,7 +27,7 @@ define('getUserMedia', ['promise'], function(promise) {
 
     exports.getAudioStream = function getAudioStream() {
         return promise.create(function(resolve, reject) {
-            gUM({
+            gUM.call(navigator, {
                 audio: true,
             }, resolve, reject);
         });

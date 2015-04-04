@@ -3,15 +3,23 @@
 <head>
     <meta charset="utf-8">
     <title>hotword.js</title>
+    <style>
+    body {
+        background: black;
+    }
+    </style>
 </head>
 <body>
-    <canvas class="visualization"></canvas>
+    <canvas class="visualization" width="800" height="600"></canvas>
 
     <script src="/src/amd.js" defer></script>
+
+    <script src="/src/audioCtx.js" defer></script>
     <script src="/src/defer.js" defer></script>
     <script src="/src/getUserMedia.js" defer></script>
     <script src="/src/main.js" defer></script>
     <script src="/src/promise.js" defer></script>
+    <script src="/src/visualization.js" defer></script>
 
     <script src="data:text/javascript,require('main');" defer></script>
 </body>
