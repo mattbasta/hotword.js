@@ -14,6 +14,13 @@ define('audioCtx', function() {
     analyzer.fftSize = 512;
 
     var buffer = new Float32Array(analyzer.frequencyBinCount);
+    var bufferMin = new Float32Array(analyzer.frequencyBinCount);
+    var bufferMax = new Float32Array(analyzer.frequencyBinCount);
+
+    for (var i = 0; i < buffer.length; i++) {
+        bufferMin[i] = Infinity;
+        bufferMax[i] = -1 * Infinity;
+    }
 
     var dataWrapper = {
         buffer: buffer,
@@ -30,6 +37,8 @@ define('audioCtx', function() {
         for (var i = 0; i < buffer.length; i++) {
             average += buffer[i];
             max = Math.max(buffer[i], max);
+            bufferMin[i] = Math.min(bufferMin[i], buffer[i]);
+            bufferMax[i] = Math.max(bufferMax[i], buffer[i]);
         }
         average /= buffer.length;
 
@@ -40,6 +49,7 @@ define('audioCtx', function() {
 
         var active = false;
         for (i = 0; i < buffer.length; i++) {
+            threshold = (average + bufferMax[i] * 2) / 3;
             if (active) {
                 if (buffer[i] > threshold) continue;
             } else {
