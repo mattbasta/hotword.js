@@ -1,4 +1,5 @@
-define('visualization', function() {
+define('visualization', ['rangeCapture'] function(rangeCapture) {
+
     var node = document.querySelector('.visualization');
     var nodeCtx = node.getContext('2d');
     nodeCtx.clearRect(0, 0, 800, 600);
@@ -9,6 +10,7 @@ define('visualization', function() {
 
     function draw() {
         var data = dataCB();
+        rangeCapture.send(data);
 
         nodeCtx.drawImage(
             node,
