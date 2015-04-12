@@ -1,4 +1,4 @@
-define('visualization', ['rangeCapture'] function(rangeCapture) {
+define('visualization', function() {
 
     var node = document.querySelector('.visualization');
     var nodeCtx = node.getContext('2d');
@@ -10,7 +10,6 @@ define('visualization', ['rangeCapture'] function(rangeCapture) {
 
     function draw() {
         var data = dataCB();
-        rangeCapture.send(data);
 
         nodeCtx.drawImage(
             node,
@@ -80,6 +79,11 @@ define('visualization', ['rangeCapture'] function(rangeCapture) {
 
             drawCB = requestAnimationFrame(draw);
 
+        },
+
+        drawMarker: function(color) {
+            nodeCtx.fillStyle = color;
+            nodeCtx.fillRect(798, 0, 2, 600);
         },
 
     };

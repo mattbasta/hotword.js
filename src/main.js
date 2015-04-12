@@ -1,7 +1,7 @@
 define(
     'main',
-    ['audioCtx', 'getUserMedia', 'visualization'],
-    function(audioCtx, getUserMedia, visualization) {
+    ['audioCtx', 'getUserMedia', 'rangeCapture', 'visualization'],
+    function(audioCtx, getUserMedia, rangeCapture, visualization) {
 
     if (!getUserMedia.hasGetUserMedia) {
         return;
@@ -10,6 +10,7 @@ define(
     getUserMedia.getAudioStream().then(function(stream) {
         audioCtx.connectGumStream(stream);
         visualization.visualize(audioCtx.getData);
+        rangeCapture.send(audioCtx.getData());
     });
 
 });
